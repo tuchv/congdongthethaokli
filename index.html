@@ -5,30 +5,265 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tôi là hội viên Cali - Tìm phòng tập</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      line-height: 1.6;
-      background-color: #f9fafb;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      min-height: 100vh;
+      line-height: 1.5;
     }
-    h1 {
-      color: #e11d48;
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
     }
-    .box {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-top: 12px;
+    }
+    header .logo {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+    header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    header p {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    /* Search Section */
+    .search-section {
+      margin-bottom: 28px;
+    }
+    .search-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Select style giống Cali */
+    .select-group {
+      margin-bottom: 12px;
+    }
+    .custom-select {
+      width: 100%;
+      padding: 16px 18px;
+      background: #1f1f1f;
+      border: 1px solid #333;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%999' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+    .custom-select:focus {
+      outline: none;
+      border-color: #e11d48;
+    }
+    .custom-select option {
+      background: #1f1f1f;
+      color: #fff;
+    }
+
+    .btn-search {
+      width: 100%;
+      margin-top: 16px;
+      padding: 16px;
+      background: #e11d48;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+    }
+    .btn-search:active {
+      background: #be123c;
+    }
+
+    /* Results */
+    .results {
+      display: none;
+    }
+    .results.show {
+      display: block;
+    }
+    .result-count {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card p {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: #2a2a2a;
+      color: #e5e5e5;
+    }
+    .tag.red {
+      background: #e11d48;
+      color: white;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6b7280;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Hội viên Cali</h1>
-    <p>Website hỗ trợ cộng đồng tìm kiếm phòng tập - dịch vụ thể thao thay thế.</p>
-    <p><strong>Đang trong quá trình xây dựng...</strong></p>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo">CỘNG ĐỒNG HỘI VIÊN</div>
+      <h1>Tìm kiếm</h1>
+      <p>Sân bãi – Phòng tập – Group X thay thế</p>
+    </header>
+
+    <!-- Thanh tìm kiếm thông minh - phong cách Cali -->
+    <div class="search-section">
+      <h2>Tìm theo bộ lọc</h2>
+
+      <div class="select-group">
+        <select id="region" class="custom-select">
+          <option value="">Chọn Tỉnh Thành | Select City</option>
+          <option value="ha-noi">Hà Nội</option>
+          <option value="hcm">Hồ Chí Minh</option>
+          <option value="bien-hoa">Đồng Nai (Biên Hòa)</option>
+          <option value="da-nang">Đà Nẵng</option>
+          <option value="da-nang">Nha Trang</option>
+        </select>
+      </div>
+
+      <div class="select-group">
+        <select id="sport" class="custom-select">
+          <option value="">Chọn Bộ môn | Select Program</option>
+          <option value="gym">Gym</option>
+          <option value="group-x">Group X</option>
+          <option value="yoga">Yoga</option>
+          <option value="indoor">Thể thao trong nhà (Cầu lông, Pickleball, Bơi)</option>
+          <option value="outdoor">Thể thao ngoài trời (Tennis, Bóng đá, Chạy bộ)</option>
+        </select>
+      </div>
+
+      <div class="select-group">
+        <select id="area" class="custom-select">
+          <option value="">Chọn Khu vực | Select Area</option>
+          <option value="long-bien">Long Biên</option>
+          <option value="le-van-luong">Lê Văn Lương</option>
+          <option value="nguyen-khuyen">Nguyễn Khuyến</option>
+          <option value="cau-giay">Cầu Giấy</option>
+          <option value="dong-da">Đống Đa</option>
+          <option value="tay-ho">Tây Hồ</option>
+          <option value="quan-7">Quận 7 (Phú Mỹ Hưng)</option>
+          <option value="all">Khác</option>
+        </select>
+      </div>
+
+      <button class="btn-search" onclick="handleSearch()">Tìm kiếm ngay</button>
+    </div>
+
+    <!-- Kết quả -->
+    <div class="results" id="results">
+      <div class="result-count" id="resultCount"></div>
+      <div id="resultList"></div>
+    </div>
   </div>
+
+  <script>
+    const locations = [
+      { name: "Nova Fitness Lê Văn Lương", region: "ha-noi", sport: "gym", area: "le-van-luong", note: "Gym + Group X + Yoga • Hỗ trợ hội viên Cali" },
+      { name: "Group X Paul Kent", region: "ha-noi", sport: "group-x", area: "nguyen-khuyen", note: "125 Nguyễn Thị Định • HLV từng dạy tại Cali" },
+      { name: "8Fit Phú Mỹ Hưng", region: "hcm", sport: "group-x", area: "quan-7", note: "Studio Group X tại Quận 7" },
+      { name: "MVP Fitness Cầu Giấy", region: "ha-noi", sport: "gym", area: "cau-giay", note: "Hỗ trợ miễn phí hội viên Cali đến 30/11" },
+      { name: "VinaFit Sunshine Riverside", region: "ha-noi", sport: "gym", area: "tay-ho", note: "Tập miễn phí đến hết tháng 12" },
+      { name: "Golden Fitness Mễ Trì", region: "ha-noi", sport: "gym", area: "le-van-luong", note: "Golden Pass miễn phí đến 31/12" },
+      { name: "Royal Fitness Thái Thịnh", region: "ha-noi", sport: "yoga", area: "dong-da", note: "Hỗ trợ chuyển đổi lên đến 80%" },
+      { name: "Sân cầu lông 115 Quán Thánh", region: "ha-noi", sport: "indoor", area: "dong-da", note: "Sân trong nhà, có cho thuê vợt" },
+      { name: "Sân Pickleball Long Biên", region: "ha-noi", sport: "indoor", area: "long-bien", note: "Nhiều sân, dễ đặt lịch" },
+      { name: "Bể bơi bốn mùa Times City", region: "ha-noi", sport: "indoor", area: "long-bien", note: "Bơi quanh năm" },
+      { name: "Sân Tennis Cầu Giấy", region: "ha-noi", sport: "outdoor", area: "cau-giay", note: "Sân ngoài trời" },
+    ];
+
+    function handleSearch() {
+      const region = document.getElementById("region").value;
+      const sport = document.getElementById("sport").value;
+      const area = document.getElementById("area").value;
+
+      let filtered = locations;
+
+      if (region) filtered = filtered.filter(i => i.region === region);
+      if (sport) filtered = filtered.filter(i => i.sport === sport);
+      if (area && area !== "all") filtered = filtered.filter(i => i.area === area);
+
+      const resultsDiv = document.getElementById("results");
+      const resultList = document.getElementById("resultList");
+      const resultCount = document.getElementById("resultCount");
+
+      resultsDiv.classList.add("show");
+      resultCount.textContent = `Tìm thấy ${filtered.length} địa điểm phù hợp`;
+
+      if (filtered.length === 0) {
+        resultList.innerHTML = `<div class="empty">Chưa có dữ liệu phù hợp với bộ lọc hiện tại.<br>Hãy thử chọn lại.</div>`;
+        return;
+      }
+
+      resultList.innerHTML = filtered.map(item => `
+        <div class="card">
+          <h3>${item.name}</h3>
+          <p>${item.note}</p>
+          <div class="tags">
+            <span class="tag red">${item.sport.toUpperCase()}</span>
+            <span class="tag">${item.region === "ha-noi" ? "Hà Nội" : item.region === "hcm" ? "TP.HCM" : item.region}</span>
+          </div>
+        </div>
+      `).join("");
+    }
+  </script>
 </body>
 </html>
