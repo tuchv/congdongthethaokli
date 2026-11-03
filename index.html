@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tôi là hội viên Cali - Tìm phòng tập</title>
+  <title>Hội viên California - Tìm sân bãi & phòng tập</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -21,17 +21,18 @@
       padding: 20px 16px 40px;
     }
 
-    /* Header */
+    /* ===== HEADER ===== */
     header {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       padding-top: 12px;
     }
     header .logo {
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 2px;
       color: #9ca3af;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
     }
     header h1 {
       font-size: 28px;
@@ -45,25 +46,23 @@
       color: #9ca3af;
     }
 
-    /* Search Section */
+    /* ===== SEARCH SECTION ===== */
     .search-section {
-      margin-bottom: 28px;
+      margin-bottom: 10px;
     }
     .search-section h2 {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       letter-spacing: 0.5px;
     }
-
-    /* Select style giống Cali */
     .select-group {
       margin-bottom: 12px;
     }
     .custom-select {
       width: 100%;
-      padding: 16px 18px;
+      padding: 15px 18px;
       background: #1f1f1f;
       border: 1px solid #333;
       border-radius: 12px;
@@ -83,16 +82,15 @@
       background: #1f1f1f;
       color: #fff;
     }
-
     .btn-search {
       width: 100%;
-      margin-top: 16px;
+      margin-top: 14px;
       padding: 16px;
       background: #e11d48;
       color: white;
       border: none;
       border-radius: 12px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -105,67 +103,190 @@
     /* Results */
     .results {
       display: none;
+      margin-top: 20px;
     }
     .results.show {
       display: block;
     }
     .result-count {
-      font-size: 14px;
+      font-size: 13px;
       color: #9ca3af;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
-    .card {
+    .card-result {
       background: #1a1a1a;
       border: 1px solid #2a2a2a;
       border-radius: 14px;
-      padding: 16px 18px;
-      margin-bottom: 12px;
-    }
-    .card h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .card p {
-      font-size: 13px;
-      color: #9ca3af;
+      padding: 14px 16px;
       margin-bottom: 10px;
     }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+    .card-result h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-result p {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 8px;
     }
     .tag {
+      display: inline-block;
       font-size: 11px;
-      padding: 3px 10px;
+      padding: 3px 9px;
       border-radius: 99px;
       background: #2a2a2a;
       color: #e5e5e5;
+      margin-right: 4px;
     }
     .tag.red {
       background: #e11d48;
       color: white;
     }
 
+    /* ===== FEATURED SECTION ===== */
+    .featured-section {
+      background: #f8fafc;
+      color: #111;
+      padding: 36px 0 40px;
+    }
+    .featured-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .featured-section h2 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #111;
+    }
+    .cards-scroll {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .feature-card {
+      min-width: 250px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .feature-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      display: block;
+      background: #e5e7eb;
+    }
+    .feature-card .content {
+      padding: 14px 16px 16px;
+    }
+    .feature-card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: #111;
+    }
+    .feature-card p {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .btn-detail {
+      display: inline-block;
+      background: #e11d48;
+      color: white;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ===== INTRO SECTION ===== */
+    .intro-section {
+      background: white;
+      color: #111;
+      padding: 48px 16px;
+    }
+    .intro-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: center;
+    }
+    .intro-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    .intro-text h2 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+    .intro-text p {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 14px;
+    }
+    .intro-text ul {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      padding-left: 18px;
+    }
+    .intro-text li {
+      margin-bottom: 6px;
+    }
+    .btn-community {
+      display: inline-block;
+      background: #e11d48;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .intro-image {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+    }
+    .intro-image img {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      background: #e5e7eb;
+    }
+
+    /* Empty state */
     .empty {
       text-align: center;
-      padding: 30px 20px;
+      padding: 24px 16px;
       color: #6b7280;
       font-size: 14px;
     }
   </style>
 </head>
 <body>
+
+  <!-- ==================== KHỐI 1: TÌM KIẾM ==================== -->
   <div class="container">
-    <!-- Header -->
     <header>
-      <div class="logo">CỘNG ĐỒNG YÊU TẬP LUYỆN</div>
+      <div class="logo">Cộng đồng yêu tập luyện</div>
       <h1>Tìm kiếm</h1>
       <p>Phòng tập thay thế linh hoạt</p>
     </header>
 
-    <!-- Thanh tìm kiếm thông minh - phong cách Cali -->
     <div class="search-section">
       <h2>Tìm theo bộ lọc</h2>
 
@@ -176,7 +297,6 @@
           <option value="hcm">Hồ Chí Minh</option>
           <option value="bien-hoa">Đồng Nai (Biên Hòa)</option>
           <option value="da-nang">Đà Nẵng</option>
-          <option value="da-nang">Nha Trang</option>
         </select>
       </div>
 
@@ -201,38 +321,107 @@
           <option value="dong-da">Đống Đa</option>
           <option value="tay-ho">Tây Hồ</option>
           <option value="quan-7">Quận 7 (Phú Mỹ Hưng)</option>
-          <option value="all">Khác</option>
+          <option value="all">Tất cả khu vực</option>
         </select>
       </div>
 
       <button class="btn-search" onclick="handleSearch()">Tìm kiếm ngay</button>
     </div>
 
-      <!-- CARD 3 -->
-      <div style="min-width: 260px; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden;">
-        <img src="images/8fit.jpg" alt="8Fit" style="width: 100%; height: 140px; object-fit: cover;">
-        <div style="padding: 16px;">
-          <h3 style="font-size: 16px; margin-bottom: 6px;">8Fit Phú Mỹ Hưng</h3>
-          <p style="font-size: 13px; color: #666; margin-bottom: 12px;">
-            Studio Group X tại Quận 7, TP.HCM. Lịch linh hoạt.
-          </p>
-          <a href="#" style="display: inline-block; background: #e11d48; color: white; padding: 8px 14px; border-radius: 8px; font-size: 13px; text-decoration: none;">
-            Xem chi tiết
-          </a>
-        </div>
-      </div>
-
-      <!-- Bạn có thể copy thêm CARD tương tự -->
-
-    </div>
-  </div>
-</section>
-    <!-- Kết quả -->
+    <!-- Kết quả tìm kiếm -->
     <div class="results" id="results">
       <div class="result-count" id="resultCount"></div>
       <div id="resultList"></div>
     </div>
   </div>
+
+  <!-- ==================== KHỐI 2: DANH SÁCH NỔI BẬT ==================== -->
+  <section class="featured-section">
+    <div class="featured-inner">
+      <h2>Danh sách nổi bật / tìm kiếm nhiều nhất</h2>
+
+      <div class="cards-scroll">
+
+        <!-- CARD 1 -->
+        <div class="feature-card">
+          <img src="images/nova-fitness.jpg" alt="Nova Fitness">
+          <div class="content">
+            <h3>Nova Fitness Lê Văn Lương</h3>
+            <p>Gym + Group X + Yoga. Hỗ trợ hội viên Cali chuyển đổi linh hoạt.</p>
+            <a href="#" class="btn-detail">Xem chi tiết</a>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="feature-card">
+          <img src="images/group-x-paul-kent.jpg" alt="Group X Paul Kent">
+          <div class="content">
+            <h3>Group X Paul Kent</h3>
+            <p>125 Nguyễn Thị Định. HLV từng dạy tại California Fitness.</p>
+            <a href="#" class="btn-detail">Xem chi tiết</a>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="feature-card">
+          <img src="images/8fit.jpg" alt="8Fit Phú Mỹ Hưng">
+          <div class="content">
+            <h3>8Fit Phú Mỹ Hưng</h3>
+            <p>Studio Group X tại Quận 7, TP.HCM. Lịch linh hoạt.</p>
+            <a href="#" class="btn-detail">Xem chi tiết</a>
+          </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="feature-card">
+          <img src="images/mvp-fitness.jpg" alt="MVP Fitness">
+          <div class="content">
+            <h3>MVP Fitness Cầu Giấy</h3>
+            <p>Hỗ trợ miễn phí hội viên Cali đến 30/11/2026.</p>
+            <a href="#" class="btn-detail">Xem chi tiết</a>
+          </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="feature-card">
+          <img src="images/vinafit.jpg" alt="VinaFit">
+          <div class="content">
+            <h3>VinaFit Sunshine Riverside</h3>
+            <p>Tập miễn phí đến hết tháng 12. Tây Hồ.</p>
+            <a href="#" class="btn-detail">Xem chi tiết</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== KHỐI 3: GIỚI THIỆU ==================== -->
+  <section class="intro-section">
+    <div class="intro-inner">
+      
+      <div class="intro-text">
+        <h2>Duy trì thói quen tập luyện cùng cộng đồng</h2>
+        <p>
+          Khi California Fitness tạm ngưng, hàng nghìn hội viên đang tìm kiếm giải pháp thay thế. 
+          Chúng tôi tổng hợp thông tin minh bạch về phòng tập, studio Group X, sân thể thao và 
+          giải pháp dinh dưỡng để bạn không bị gián đoạn hành trình.
+        </p>
+        <ul>
+          <li>Thông tin địa điểm cập nhật thực tế</li>
+          <li>Studio do HLV từng dạy tại Cali vận hành</li>
+          <li>Chương trình hỗ trợ hội viên Cali</li>
+          <li>Cộng đồng Zalo & Facebook hỗ trợ lẫn nhau</li>
+        </ul>
+        <a href="#" class="btn-community">Tham gia cộng đồng</a>
+      </div>
+
+      <div class="intro-image">
+        <img src="images/cong-dong-tap-luyen.jpg" alt="Cộng đồng tập luyện">
+      </div>
+
+    </div>
+  </section>
 
   <script>
     const locations = [
@@ -273,85 +462,14 @@
       }
 
       resultList.innerHTML = filtered.map(item => `
-        <div class="card">
+        <div class="card-result">
           <h3>${item.name}</h3>
           <p>${item.note}</p>
-          <div class="tags">
-            <span class="tag red">${item.sport.toUpperCase()}</span>
-            <span class="tag">${item.region === "ha-noi" ? "Hà Nội" : item.region === "hcm" ? "TP.HCM" : item.region}</span>
-          </div>
+          <span class="tag red">${item.sport.toUpperCase()}</span>
+          <span class="tag">${item.region === "ha-noi" ? "Hà Nội" : item.region === "hcm" ? "TP.HCM" : item.region}</span>
         </div>
       `).join("");
     }
   </script>
 </body>
 </html>
-<!-- ===== DANH SÁCH NỔI BẬT ===== -->
-<section style="padding: 40px 16px; background: #f8fafc;">
-  <div style="max-width: 960px; margin: 0 auto;">
-    <h2 style="text-align: center; font-size: 22px; margin-bottom: 24px; color: #111;">
-      Danh sách nổi bật / tìm kiếm nhiều nhất
-    </h2>
-
-    <div style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px;">
-      
-      <!-- CARD 1 -->
-      <div style="min-width: 260px; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden;">
-        <img src="images/nova-fitness.jpg" alt="Nova Fitness" style="width: 100%; height: 140px; object-fit: cover;">
-        <div style="padding: 16px;">
-          <h3 style="font-size: 16px; margin-bottom: 6px;">Nova Fitness Lê Văn Lương</h3>
-          <p style="font-size: 13px; color: #666; margin-bottom: 12px;">
-            Gym + Group X + Yoga. Hỗ trợ hội viên Cali chuyển đổi linh hoạt.
-          </p>
-          <a href="#" style="display: inline-block; background: #e11d48; color: white; padding: 8px 14px; border-radius: 8px; font-size: 13px; text-decoration: none;">
-            Xem chi tiết
-          </a>
-        </div>
-      </div>
-
-      <!-- CARD 2 -->
-      <div style="min-width: 260px; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden;">
-        <img src="images/group-x-paul-kent.jpg" alt="Group X Paul Kent" style="width: 100%; height: 140px; object-fit: cover;">
-        <div style="padding: 16px;">
-          <h3 style="font-size: 16px; margin-bottom: 6px;">Group X Paul Kent</h3>
-          <p style="font-size: 13px; color: #666; margin-bottom: 12px;">
-            125 Nguyễn Thị Định. HLV từng dạy tại California Fitness.
-          </p>
-          <a href="#" style="display: inline-block; background: #e11d48; color: white; padding: 8px 14px; border-radius: 8px; font-size: 13px; text-decoration: none;">
-            Xem chi tiết
-          </a>
-        </div>
-      </div>
-      <!-- ===== KHỐI GIỚI THIỆU ===== -->
-<section style="padding: 50px 16px; background: white;">
-  <div style="max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: center;">
-    
-    <!-- Cột trái: Nội dung text -->
-    <div style="flex: 1; min-width: 280px;">
-      <h2 style="font-size: 22px; margin-bottom: 16px; color: #111;">
-        Duy trì thói quen tập luyện cùng cộng đồng
-      </h2>
-      <p style="font-size: 15px; color: #444; margin-bottom: 12px;">
-        Khi California Fitness tạm ngưng, hàng nghìn hội viên đang tìm kiếm giải pháp thay thế. 
-        Chúng tôi tổng hợp thông tin minh bạch về phòng tập, studio Group X, sân thể thao và 
-        giải pháp dinh dưỡng để bạn không bị gián đoạn hành trình.
-      </p>
-      <ul style="font-size: 14px; color: #555; margin-bottom: 20px; padding-left: 18px;">
-        <li>Thông tin địa điểm cập nhật thực tế</li>
-        <li>Studio do HLV từng dạy tại Cali vận hành</li>
-        <li>Chương trình hỗ trợ hội viên Cali</li>
-        <li>Cộng đồng Zalo & Facebook hỗ trợ lẫn nhau</li>
-      </ul>
-      <a href="#" style="display: inline-block; background: #e11d48; color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 600;">
-        Tham gia cộng đồng
-      </a>
-    </div>
-
-    <!-- Cột phải: Hình ảnh minh họa -->
-    <div style="flex: 1; min-width: 280px; text-align: center;">
-      <img src="images/cong-dong-tap-luyen.jpg" alt="Cộng đồng tập luyện" 
-           style="width: 100%; max-width: 380px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
-    </div>
-
-  </div>
-</section>
