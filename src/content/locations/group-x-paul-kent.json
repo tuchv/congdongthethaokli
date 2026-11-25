@@ -1,0 +1,21 @@
+{
+  "name": "Group X Paul Kent Studio",
+  "region": "ha-noi",
+  "areaName": "Nguyễn Thị Định",
+  "sport": "group-x",
+  "address": "125 Nguyễn Thị Định, Trung Hòa, Cầu Giấy, Hà Nội",
+  "phone": "0936.111.333",
+  "priceRange": "Từ 50.000đ/buổi",
+  "rating": "5.0",
+  "reviewsCount": 98,
+  "badge": "HLV Cali Gốc",
+  "specialOffer": "Gặp lại các Master Trainer ruột của Cali: BodyCombat, BodyPump, Zumba, Sexy Dance.",
+  "description": "Studio chuyên biệt dành riêng cho tín đồ Group X được sáng lập bởi cựu HLV Trưởng của California Fitness. Không gian bùng nổ năng lượng, hệ thống ánh sáng chuẩn festival.",
+  "facilities": [
+    "Sàn gỗ giảm chấn",
+    "Hệ thống âm thanh biểu diễn",
+    "Nước detox miễn phí",
+    "Khu vực check-in sống ảo"
+  ],
+  "isFeatured": true
+}

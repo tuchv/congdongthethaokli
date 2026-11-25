@@ -1,0 +1,22 @@
+{
+  "name": "Nova Fitness & Yoga Lê Văn Lương",
+  "region": "ha-noi",
+  "areaName": "Lê Văn Lương",
+  "sport": "gym",
+  "address": "Tầng 3, Tòa nhà Golden Palm, 21 Lê Văn Lương, Nhân Chính, Thanh Xuân",
+  "phone": "0904.888.222",
+  "priceRange": "Từ 450.000đ/tháng",
+  "rating": "4.9",
+  "reviewsCount": 142,
+  "badge": "Hỗ trợ Cali",
+  "specialOffer": "Hỗ trợ bảo lưu & quy đổi gói tập California Fitness đến 80%. Tặng 02 buổi PT.",
+  "description": "Tổ hợp thể thao 5 sao rộng hơn 1.800m2 với đầy đủ khu tạ tự do, máy Technogym, phòng Group X âm thanh đỉnh cao và phòng Yoga tường đá muối Himalaya.",
+  "facilities": [
+    "Phòng tắm nóng lạnh",
+    "Tủ Locker vân tay",
+    "Xông hơi đá muối",
+    "Bãi đỗ ô tô miễn phí",
+    "InBody test định kỳ"
+  ],
+  "isFeatured": true
+}

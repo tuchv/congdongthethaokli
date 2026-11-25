@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cộng Đồng Thể Thao KLI | Tìm Sân Bãi & Phòng Tập Uy Tín Toàn Quốc</title>
+  <meta name="description" content="Nền tảng tra cứu phòng tập Gym, Studio Group X, Yoga, Sân Pickleball & Cầu lông uy tín. Hỗ trợ quyền lợi và chuyển đổi linh hoạt cho hội viên.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       CSS RESET & VARIABLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --bg-main: #0b0d13;
+      --bg-surface: #121622;
+      --bg-surface-elevated: #1a1f30;
+      --bg-glass: rgba(18, 22, 34, 0.75);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.18);
+      
+      --primary: #ff2a54;
+      --primary-hover: #e01e44;
+      --primary-glow: rgba(255, 42, 84, 0.35);
+      --secondary: #10b981;
+      --secondary-glow: rgba(16, 185, 129, 0.3);
+      --accent-yellow: #f59e0b;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4);
+      --shadow-glow: 0 0 25px var(--primary-glow);
+
+      --transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font-family: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ==========================================================================
+       NAVBAR
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: var(--bg-glass);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #ff2a54, #ff6b8b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px var(--primary-glow);
+      font-size: 20px;
+    }
+
+    .brand-text span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-main);
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      border-radius: var(--radius-full);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--primary), #e11d48);
+      color: #fff;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 16px var(--primary-glow);
+      transition: var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 42, 84, 0.5);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      padding: 60px 0 40px;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 42, 84, 0.18) 0%, rgba(16, 185, 129, 0.08) 45%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 40px;
+    }
+
+    .badge-alert {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(255, 42, 84, 0.12);
+      border: 1px solid rgba(255, 42, 84, 0.3);
+      border-radius: var(--radius-full);
+      color: #ff6b8b;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      animation: pulseAlert 2.5s infinite;
+    }
+
+    @keyframes pulseAlert {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 42, 84, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(255, 42, 84, 0); }
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .hero-title .highlight {
+      background: linear-gradient(135deg, #ff2a54, #ff7b92);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2vw, 18px);
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+    }
+
+    /* Stats bar */
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 40px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 0 10px;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       SEARCH & FILTER BAR (UNIFIED & INTERACTIVE)
+       ========================================================================== */
+    .search-panel {
+      position: relative;
+      z-index: 10;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 28px;
+      backdrop-filter: blur(12px);
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1.2fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .input-box {
+      position: relative;
+    }
+
+    .input-box svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 54px;
+      padding: 0 16px 0 46px;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-size: 15px;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 42, 84, 0.2);
+    }
+
+    .search-select {
+      width: 100%;
+      height: 54px;
+      padding: 0 40px 0 16px;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 256 256'%3E%3Cpath d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: var(--transition-smooth);
+    }
+
+    .search-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 42, 84, 0.2);
+    }
+
+    .search-select option {
+      background: var(--bg-surface);
+      color: #fff;
+    }
+
+    .btn-search-main {
+      height: 54px;
+      padding: 0 28px;
+      background: linear-gradient(135deg, var(--primary), #e11d48);
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 16px var(--primary-glow);
+      transition: var(--transition-smooth);
+      white-space: nowrap;
+    }
+
+    .btn-search-main:hover {
+      background: linear-gradient(135deg, #ff3b63, #be123c);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 42, 84, 0.45);
+    }
+
+    /* ==========================================================================
+       CATEGORY QUICK-PILLS
+       ========================================================================== */
+    .category-pills {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 24px;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .category-pills::-webkit-scrollbar {
+      height: 4px;
+    }
+    .category-pills::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition-smooth);
+    }
+
+    .pill-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .pill-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 12px var(--primary-glow);
+    }
+
+    /* ==========================================================================
+       RESULTS HEADER & GRID
+       ========================================================================== */
+    .results-section {
+      padding: 20px 0 60px;
+    }
+
+    .section-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .results-count-badge {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .results-count-badge span {
+      background: rgba(255, 42, 84, 0.15);
+      color: var(--primary);
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+    }
+
+    .sort-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .sort-select {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 24px;
+    }
+
+    .place-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .place-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-thumb {
+      position: relative;
+      height: 200px;
+      width: 100%;
+      overflow: hidden;
+      background: #1e2433;
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .place-card:hover .card-thumb img {
+      transform: scale(1.06);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-cali {
+      background: rgba(255, 42, 84, 0.9);
+      color: #fff;
+    }
+
+    .badge-verified {
+      background: rgba(16, 185, 129, 0.9);
+      color: #fff;
+    }
+
+    .card-sport-tag {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      padding: 4px 10px;
+      background: rgba(11, 13, 19, 0.85);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .card-rating {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 4px 10px;
+      background: rgba(11, 13, 19, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-location-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      color: #fff;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-offer-box {
+      background: rgba(255, 42, 84, 0.08);
+      border-left: 3px solid var(--primary);
+      padding: 10px 12px;
+      border-radius: 4px 8px 8px 4px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: #fda4af;
+      line-height: 1.45;
+    }
+
+    .card-offer-box strong {
+      color: #fff;
+    }
+
+    .card-address {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.4;
+    }
+
+    .card-address svg {
+      width: 16px;
+      height: 16px;
+      color: var(--text-dim);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .card-facilities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+      margin-top: auto;
+    }
+
+    .facility-chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius-sm);
+      color: #cbd5e1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .card-price {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .card-price strong {
+      font-size: 15px;
+      color: #fff;
+      display: block;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-card-detail {
+      padding: 9px 16px;
+      background: var(--bg-surface-elevated);
+      color: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-card-detail:hover {
+      background: #252c42;
+      border-color: var(--border-hover);
+    }
+
+    .btn-card-call {
+      padding: 9px 16px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-card-call:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    /* Empty state */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--bg-surface);
+      border-radius: var(--radius-xl);
+      border: 1px dashed var(--border-color);
+    }
+
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .empty-state h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .empty-state p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .btn-reset-filter {
+      padding: 10px 20px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       COMMUNITY BENEFITS & MISSION SECTION
+       ========================================================================== */
+    .benefits-section {
+      padding: 80px 0;
+      background: linear-gradient(180deg, var(--bg-main) 0%, #10141f 100%);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .section-tag {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-md);
+    }
+
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 42, 84, 0.1);
+      border: 1px solid rgba(255, 42, 84, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .benefit-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .benefit-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       ABOUT & STORY SECTION
+       ========================================================================== */
+    .about-section {
+      padding: 80px 0;
+    }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .check-list {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #e2e8f0;
+      margin-bottom: 14px;
+    }
+
+    .check-list li span.check-icon {
+      color: var(--secondary);
+      font-weight: bold;
+      background: rgba(16, 185, 129, 0.15);
+      border-radius: var(--radius-full);
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .floating-stat-box {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 18px 24px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .floating-stat-box .badge-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    /* ==========================================================================
+       TESTIMONIALS SECTION
+       ========================================================================== */
+    .testimonials-section {
+      padding: 70px 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .testi-card {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .testi-text {
+      font-size: 14.5px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testi-author img {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+
+    .testi-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .testi-role {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       CTA BANNER SECTION
+       ========================================================================== */
+    .cta-banner-section {
+      padding: 70px 0;
+    }
+
+    .cta-banner {
+      background: linear-gradient(135deg, #1c2338 0%, #151a28 100%);
+      border: 1px solid rgba(255, 42, 84, 0.3);
+      border-radius: var(--radius-xl);
+      padding: 50px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-banner p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+
+    .cta-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-zalo-big {
+      padding: 14px 28px;
+      background: #0068ff;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 16px rgba(0, 104, 255, 0.4);
+    }
+
+    .btn-zalo-big:hover {
+      background: #0056d6;
+      transform: translateY(-2px);
+    }
+
+    .btn-fb-big {
+      padding: 14px 28px;
+      background: #1877f2;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 16px rgba(24, 119, 242, 0.4);
+    }
+
+    .btn-fb-big:hover {
+      background: #1462c9;
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       MODAL DETAIL POPUP
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-xl);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.95);
+      transition: transform 0.25s ease;
+      position: relative;
+    }
+
+    .modal-backdrop.show .modal-card {
+      transform: scale(1);
+    }
+
+    .btn-close-modal {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-close-modal:hover {
+      background: var(--primary);
+    }
+
+    .modal-banner {
+      height: 250px;
+      position: relative;
+      background: #131722;
+    }
+
+    .modal-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-content-inner {
+      padding: 28px;
+    }
+
+    .modal-content-inner h3 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .modal-address-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .modal-offer-callout {
+      background: rgba(255, 42, 84, 0.1);
+      border-left: 4px solid var(--primary);
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .modal-offer-callout h4 {
+      color: #ff6b8b;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .modal-offer-callout p {
+      font-size: 14px;
+      color: #f1f5f9;
+      line-height: 1.5;
+    }
+
+    .modal-desc-box {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .modal-facilities-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .modal-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .modal-chip {
+      padding: 6px 12px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-modal-call {
+      flex: 1;
+      padding: 14px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-modal-map {
+      padding: 14px 20px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      background: #07080c;
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      max-width: 400px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .footer-links h5 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* ==========================================================================
+       FLOATING ACTION BUTTON
+       ========================================================================== */
+    .floating-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fab-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      border: none;
+      color: #fff;
+      font-size: 22px;
+    }
+
+    .fab-zalo {
+      background: #0068ff;
+      box-shadow: 0 4px 16px rgba(0, 104, 255, 0.45);
+    }
+    .fab-zalo:hover {
+      transform: scale(1.1);
+    }
+
+    .fab-top {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      display: none;
+    }
+    .fab-top.show {
+      display: flex;
+    }
+    .fab-top:hover {
+      background: var(--primary);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .search-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .btn-search-main {
+        grid-column: span 2;
+      }
+      .about-wrap {
+        grid-template-columns: 1fr;
+      }
+      .floating-stat-box {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        margin-top: 16px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-ribbon {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stat-item:nth-child(2) {
+        border-right: none;
+      }
+      .stat-item:nth-child(3) {
+        border-right: 1px solid var(--border-color);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .search-row {
+        grid-template-columns: 1fr;
+      }
+      .btn-search-main {
+        grid-column: span 1;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-ribbon {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .stat-item {
+        border-right: none !important;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 14px;
+      }
+      .stat-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .cta-banner {
+        padding: 36px 20px;
+      }
+      .modal-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">KLI <span>SPORTS</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#search-section" class="nav-link active">Tìm Phòng Tập</a></li>
+        <li><a href="#featured-section" class="nav-link">Điểm Nổi Bật</a></li>
+        <li><a href="#benefits-section" class="nav-link">Đặc Quyền Kli</a></li>
+        <li><a href="#about-section" class="nav-link">Về Cộng Đồng</a></li>
+        <li><a href="#testimonials-section" class="nav-link">Đánh Giá</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://zalo.me/g/klisports" target="_blank" class="btn-nav-cta">
+          <span>Tham Gia Nhóm KLI</span>
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <header class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge-alert">
+          <span>🔔</span> Hỗ Trợ Chuyển Đổi Quyền Lợi Hội Viên California Toàn Quốc
+        </div>
+        <h1 class="hero-title">
+          CỘNG ĐỒNG THỂ THAO <span class="highlight">KLI</span>
+        </h1>
+        <p class="hero-subtitle">
+          Nền tảng tra cứu phòng Gym, studio Group X, Yoga, sân Pickleball & Cầu lông uy tín. Giữ vững ngọn lửa thể thao và tìm kiếm không gian tập luyện lý tưởng cùng hàng ngàn đồng đội.
+        </p>
+
+        <!-- Stats Ribbon -->
+        <div class="stats-ribbon" id="statsRibbon">
+          <!-- Rendered dynamically by data.js -->
+        </div>
+      </div>
+
+      <!-- ==================== INTERACTIVE SEARCH PANEL ==================== -->
+      <section class="search-panel" id="search-section">
+        <div class="search-row">
+          <div class="input-box">
+            <svg viewBox="0 0 256 256" fill="currentColor">
+              <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+            </svg>
+            <input type="text" id="keywordInput" class="search-input" placeholder="Tìm theo tên phòng, đường phố, HLV (ví dụ: Paul Kent, Nova, Cầu Giấy...)">
+          </div>
+
+          <div>
+            <select id="regionSelect" class="search-select">
+              <option value="all">📍 Tất cả Tỉnh / Thành phố</option>
+              <!-- Rendered dynamically -->
+            </select>
+          </div>
+
+          <div>
+            <select id="areaSelect" class="search-select">
+              <option value="all">🏢 Tất cả Khu vực / Quận</option>
+              <!-- Rendered dynamically -->
+            </select>
+          </div>
+
+          <button class="btn-search-main" onclick="executeSearch()">
+            <span>Tìm Kiếm Ngay</span>
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills" id="categoryPills">
+        <!-- Rendered dynamically from data.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN RESULTS SECTION ==================== -->
+  <main class="results-section">
+    <div class="container">
+      <div class="section-header-bar">
+        <div class="results-count-badge">
+          <span>Kết Quả Tìm Kiếm</span>
+          <div id="resultsCount">Đang tải dữ liệu...</div>
+        </div>
+
+        <div class="sort-control">
+          <label for="sortSelect">Sắp xếp theo:</label>
+          <select id="sortSelect" class="sort-select" onchange="applySorting()">
+            <option value="featured">Được đề xuất nhiều nhất</option>
+            <option value="rating">Đánh giá cao nhất (5 sao)</option>
+            <option value="name">Tên A - Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Results Grid -->
+      <div class="cards-grid" id="cardsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== BENEFITS SECTION ==================== -->
+  <section class="benefits-section" id="benefits-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-tag">Đặc Quyền Hội Viên</span>
+        <h2 class="section-title">Tại Sao Nên Đồng Hành Cùng Cộng Đồng Kli?</h2>
+        <p class="section-desc">Chúng tôi là tổ chức cộng đồng độc lập, hoạt động vì quyền lợi chính đáng của những người đam mê rèn luyện thể chất.</p>
+      </div>
+
+      <div class="benefits-grid" id="benefitsGrid">
+        <!-- Rendered dynamically from data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT & STORY SECTION ==================== -->
+  <section class="about-section" id="about-section">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-text">
+          <span class="section-tag">Sứ Mệnh Kli Sports</span>
+          <h2>Duy Trì Thói Quen Tập Luyện Bền Vững</h2>
+          <p>
+            Khi thị trường thể hình có nhiều biến động và các trung tâm lớn tạm ngưng hoạt động, hàng vạn hội viên rơi vào tình thế bối rối và gián đoạn lối sống lành mạnh.
+          </p>
+          <p>
+            <strong>Cộng Đồng Thể Thao Kli</strong> ra đời với sứ mệnh kết nối những trái tim yêu vận động, giúp bạn nhanh chóng tìm được bến đỗ tập luyện mới ưng ý với chi phí hợp lý và những đặc quyền chuyển đổi tốt nhất.
+          </p>
+          <ul class="check-list" id="aboutCheckList">
+            <!-- Rendered dynamically from data.js -->
+          </ul>
+          <a href="https://zalo.me/g/klisports" target="_blank" class="btn-nav-cta">
+            <span>Tham Gia Cộng Đồng Zalo Ngay</span>
+          </a>
+        </div>
+
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="Cộng đồng thể thao Kli">
+          <div class="floating-stat-box">
+            <div class="badge-num">100%</div>
+            <div>
+              <strong style="color: #fff; font-size: 15px; display: block;">Hỗ Trợ Hội Viên</strong>
+              <span style="font-size: 13px; color: var(--text-muted);">Phi lợi nhuận vì tinh thần thể thao</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS SECTION ==================== -->
+  <section class="testimonials-section" id="testimonials-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-tag">Hội Viên Chia Sẻ</span>
+        <h2 class="section-title">Câu Chuyện Từ Những Người Cùng Đam Mê</h2>
+        <p class="section-desc">Cảm nhận thực tế của các thành viên đã tìm được phòng tập và bạn đồng hành qua Kli Sports.</p>
+      </div>
+
+      <div class="testimonials-grid" id="testimonialsGrid">
+        <!-- Rendered dynamically from data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA BANNER SECTION ==================== -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Đừng Để Nhịp Tập Của Bạn Bị Gián Đoạn!</h2>
+        <p>Tham gia ngay các nhóm thảo luận Zalo & Facebook của Cộng Đồng Thể Thao Kli để cập nhật danh sách phòng tập đối tác và nhận vé tập ưu đãi độc quyền.</p>
+        <div class="cta-btns">
+          <a href="https://zalo.me/g/klisports" target="_blank" class="btn-zalo-big">
+            <span>💬 Tham Gia Nhóm Zalo Kli</span>
+          </a>
+          <a href="https://facebook.com/groups/congdongthethaokli" target="_blank" class="btn-fb-big">
+            <span>👥 Tham Gia Group Facebook</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>⚡ CỘNG ĐỒNG THỂ THAO KLI</h4>
+          <p>Nền tảng kết nối thể thao, hỗ trợ chuyển đổi quyền lợi hội viên và thẩm định địa điểm tập luyện uy tín tại Việt Nam.</p>
+          <p style="color: var(--primary); font-weight: 600;">Hotline Hỗ Trợ: 0988.123.456</p>
+        </div>
+
+        <div class="footer-links">
+          <h5>Bộ Môn Phổ Biến</h5>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('gym')">Gym & Thể Hình</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('group-x')">Group X & LesMills</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('yoga')">Yoga & Pilates Trị Liệu</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('indoor')">Pickleball & Cầu Lông</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryFilter('swimming')">Bể Bơi Bốn Mùa</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h5>Khu Vực Trọng Điểm</h5>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="setRegionFilter('ha-noi')">Hà Nội (Cầu Giấy, Thanh Xuân, Tây Hồ)</a></li>
+            <li><a href="javascript:void(0)" onclick="setRegionFilter('hcm')">Hồ Chí Minh (Quận 7, Thủ Đức)</a></li>
+            <li><a href="javascript:void(0)" onclick="setRegionFilter('da-nang')">Đà Nẵng (Hải Châu)</a></li>
+            <li><a href="javascript:void(0)" onclick="setRegionFilter('bien-hoa')">Đồng Nai (Biên Hòa)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Cộng Đồng Thể Thao Kli (KLI Sports Community). All rights reserved. Vận hành phi lợi nhuận vì quyền lợi cộng đồng người tập luyện thể thao.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL CHI TIẾT ĐỊA ĐIỂM ==================== -->
+  <div class="modal-backdrop" id="detailModal" onclick="handleBackdropClick(event)">
+    <div class="modal-card">
+      <button class="btn-close-modal" onclick="closeModal()">✕</button>
+      <div class="modal-banner">
+        <img id="modalImage" src="" alt="Địa điểm">
+      </div>
+      <div class="modal-content-inner">
+        <h3 id="modalName">Tên địa điểm</h3>
+        <div class="modal-address-line">
+          <span>📍</span>
+          <span id="modalAddress">Địa chỉ chi tiết</span>
+        </div>
+
+        <div class="modal-offer-callout">
+          <h4>🎁 ƯU ĐÃI ĐẶC QUYỀN HỘI VIÊN KLI & CALI:</h4>
+          <p id="modalOffer">Nội dung ưu đãi</p>
+        </div>
+
+        <div class="modal-desc-box" id="modalDesc">
+          Mô tả chi tiết phòng tập...
+        </div>
+
+        <div class="modal-facilities-title">Tiện ích & Dịch vụ đi kèm:</div>
+        <div class="modal-chips" id="modalFacilities">
+          <!-- Chips -->
+        </div>
+
+        <div class="modal-actions">
+          <a id="modalCallBtn" href="tel:" class="btn-modal-call">
+            <span>📞 Gọi Điện Tư Vấn Ngay</span>
+          </a>
+          <a id="modalMapBtn" href="#" target="_blank" class="btn-modal-map">
+            <span>🗺️ Xem Bản Đồ</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FLOATING QUICK ACTIONS ==================== -->
+  <div class="floating-fab">
+    <a href="https://zalo.me/g/klisports" target="_blank" class="fab-btn fab-zalo" title="Tham gia Zalo Kli">💬</a>
+    <button class="fab-btn fab-top" id="fabTop" onclick="scrollToTop()" title="Lên đầu trang">↑</button>
+  </div>
+
+  <!-- LOAD DATA CONFIGURATION SCRIPT -->
+  <script src="data.js"></script>
+
+  <!-- APPLICATION LOGIC -->
+  <script>
+    // State management
+    let activeCategory = "all";
+    let currentKeyword = "";
+    let selectedRegion = "all";
+    let selectedArea = "all";
+    let activeSort = "featured";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initApp();
+    });
+
+    function initApp() {
+      if (typeof KLI_CONFIG === "undefined") {
+        console.error("Lỗi: Không tìm thấy dữ liệu KLI_CONFIG từ data.js");
+        return;
+      }
+
+      renderStats();
+      renderCategoryPills();
+      populateDropdowns();
+      renderBenefits();
+      renderAboutPoints();
+      renderTestimonials();
+      executeSearch();
+      setupScrollEvents();
+    }
+
+    // Render Stats
+    function renderStats() {
+      const statsContainer = document.getElementById("statsRibbon");
+      if (!statsContainer || !KLI_CONFIG.stats) return;
+
+      statsContainer.innerHTML = KLI_CONFIG.stats.map(s => `
+        <div class="stat-item">
+          <div class="stat-number">${s.value}</div>
+          <div class="stat-label">${s.label}</div>
+        </div>
+      `).join("");
+    }
+
+    // Render Categories
+    function renderCategoryPills() {
+      const pillsContainer = document.getElementById("categoryPills");
+      if (!pillsContainer || !KLI_CONFIG.categories) return;
+
+      pillsContainer.innerHTML = KLI_CONFIG.categories.map(c => `
+        <button class="pill-btn ${c.id === activeCategory ? 'active' : ''}" onclick="setCategoryFilter('${c.id}')">
+          <span>${c.icon}</span>
+          <span>${c.name}</span>
+        </button>
+      `).join("");
+    }
+
+    // Populate Dropdowns
+    function populateDropdowns() {
+      const regionSelect = document.getElementById("regionSelect");
+      const areaSelect = document.getElementById("areaSelect");
+
+      if (regionSelect && KLI_CONFIG.regions) {
+        KLI_CONFIG.regions.forEach(r => {
+          const opt = document.createElement("option");
+          opt.value = r.id;
+          opt.textContent = `📍 ${r.name}`;
+          regionSelect.appendChild(opt);
+        });
+
+        regionSelect.addEventListener("change", (e) => {
+          selectedRegion = e.target.value;
+          updateAreaDropdown();
+          executeSearch();
+        });
+      }
+
+      if (areaSelect) {
+        areaSelect.addEventListener("change", (e) => {
+          selectedArea = e.target.value;
+          executeSearch();
+        });
+      }
+
+      // Keyword input live search
+      const keywordInput = document.getElementById("keywordInput");
+      if (keywordInput) {
+        keywordInput.addEventListener("input", (e) => {
+          currentKeyword = e.target.value.trim().toLowerCase();
+          executeSearch();
+        });
+      }
+    }
+
+    function updateAreaDropdown() {
+      const areaSelect = document.getElementById("areaSelect");
+      areaSelect.innerHTML = `<option value="all">🏢 Tất cả Khu vực / Quận</option>`;
+
+      const filteredAreas = KLI_CONFIG.areas.filter(a => {
+        if (selectedRegion === "all") return true;
+        return a.region === selectedRegion || a.region === "all";
+      });
+
+      filteredAreas.forEach(a => {
+        if (a.id === "all") return;
+        const opt = document.createElement("option");
+        opt.value = a.id;
+        opt.textContent = a.name;
+        areaSelect.appendChild(opt);
+      });
+
+      selectedArea = "all";
+      areaSelect.value = "all";
+    }
+
+    // Category click handler
+    function setCategoryFilter(catId) {
+      activeCategory = catId;
+      renderCategoryPills();
+      executeSearch();
+    }
+
+    // Set region filter shortcut
+    function setRegionFilter(regId) {
+      selectedRegion = regId;
+      const regSelect = document.getElementById("regionSelect");
+      if (regSelect) regSelect.value = regId;
+      updateAreaDropdown();
+      executeSearch();
+      document.getElementById("search-section").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Search and filter logic
+    function executeSearch() {
+      if (!KLI_CONFIG.locations) return;
+
+      let list = [...KLI_CONFIG.locations];
+
+      // Filter by Category/Sport
+      if (activeCategory !== "all") {
+        list = list.filter(item => item.sport === activeCategory);
+      }
+
+      // Filter by Region
+      if (selectedRegion !== "all") {
+        list = list.filter(item => item.region === selectedRegion);
+      }
+
+      // Filter by Area
+      if (selectedArea !== "all") {
+        list = list.filter(item => item.area === selectedArea);
+      }
+
+      // Filter by Keyword
+      if (currentKeyword) {
+        list = list.filter(item => {
+          const matchName = item.name.toLowerCase().includes(currentKeyword);
+          const matchAddr = item.address.toLowerCase().includes(currentKeyword);
+          const matchArea = item.areaName.toLowerCase().includes(currentKeyword);
+          const matchDesc = item.description.toLowerCase().includes(currentKeyword);
+          const matchOffer = item.specialOffer.toLowerCase().includes(currentKeyword);
+          return matchName || matchAddr || matchArea || matchDesc || matchOffer;
+        });
+      }
+
+      // Sort
+      if (activeSort === "rating") {
+        list.sort((a, b) => b.rating - a.rating);
+      } else if (activeSort === "name") {
+        list.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        // Featured first
+        list.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
+      }
+
+      renderCards(list);
+    }
+
+    function applySorting() {
+      const sortSelect = document.getElementById("sortSelect");
+      if (sortSelect) {
+        activeSort = sortSelect.value;
+        executeSearch();
+      }
+    }
+
+    // Render Place Cards
+    function renderCards(list) {
+      const grid = document.getElementById("cardsGrid");
+      const countEl = document.getElementById("resultsCount");
+
+      countEl.innerHTML = `Tìm thấy <span>${list.length}</span> địa điểm phù hợp`;
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <h3>Không tìm thấy địa điểm phù hợp</h3>
+            <p>Vui lòng thử điều chỉnh lại bộ lọc hoặc nhập từ khóa tìm kiếm khác.</p>
+            <button class="btn-reset-filter" onclick="resetFilters()">Đặt lại bộ lọc</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map(item => `
+        <div class="place-card">
+          <div class="card-thumb">
+            <img src="${item.image}" alt="${item.name}" loading="lazy">
+            <div class="card-badge ${item.badge.includes('Cali') ? 'badge-cali' : 'badge-verified'}">
+              ${item.badge}
+            </div>
+            <div class="card-sport-tag">${item.sportName}</div>
+            <div class="card-rating">★ ${item.rating.toFixed(1)}</div>
+          </div>
+
+          <div class="card-body">
+            <div class="card-location-meta">
+              <span>📍</span> ${item.areaName} • ${item.regionName}
+            </div>
+
+            <h3 class="card-title">${item.name}</h3>
+
+            <div class="card-offer-box">
+              <strong>Ưu đãi Kli:</strong> ${item.specialOffer}
+            </div>
+
+            <div class="card-address">
+              <svg viewBox="0 0 256 256" fill="currentColor">
+                <path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,202.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"></path>
+              </svg>
+              <span>${item.address}</span>
+            </div>
+
+            <div class="card-facilities">
+              ${item.facilities.slice(0, 3).map(f => `<span class="facility-chip">${f}</span>`).join("")}
+              ${item.facilities.length > 3 ? `<span class="facility-chip">+${item.facilities.length - 3}</span>` : ''}
+            </div>
+
+            <div class="card-footer">
+              <div class="card-price">
+                <span>Mức giá</span>
+                <strong>${item.priceRange}</strong>
+              </div>
+
+              <div class="card-actions">
+                <button class="btn-card-detail" onclick="openModal('${item.id}')">Chi tiết</button>
+                <a href="tel:${item.phone}" class="btn-card-call">
+                  <span>Gọi</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function resetFilters() {
+      activeCategory = "all";
+      selectedRegion = "all";
+      selectedArea = "all";
+      currentKeyword = "";
+      document.getElementById("keywordInput").value = "";
+      document.getElementById("regionSelect").value = "all";
+      document.getElementById("areaSelect").value = "all";
+      renderCategoryPills();
+      updateAreaDropdown();
+      executeSearch();
+    }
+
+    // Render Benefits
+    function renderBenefits() {
+      const container = document.getElementById("benefitsGrid");
+      if (!container || !KLI_CONFIG.communityBenefits) return;
+
+      container.innerHTML = KLI_CONFIG.communityBenefits.map(b => `
+        <div class="benefit-card">
+          <div class="benefit-icon">${b.icon}</div>
+          <h3 class="benefit-title">${b.title}</h3>
+          <p class="benefit-desc">${b.desc}</p>
+        </div>
+      `).join("");
+    }
+
+    // Render About Check List
+    function renderAboutPoints() {
+      const list = document.getElementById("aboutCheckList");
+      if (!list || !KLI_CONFIG.introContent || !KLI_CONFIG.introContent.points) return;
+
+      list.innerHTML = KLI_CONFIG.introContent.points.map(p => `
+        <li>
+          <span class="check-icon">✓</span>
+          <span>${p}</span>
+        </li>
+      `).join("");
+    }
+
+    // Render Testimonials
+    function renderTestimonials() {
+      const container = document.getElementById("testimonialsGrid");
+      if (!container || !KLI_CONFIG.testimonials) return;
+
+      container.innerHTML = KLI_CONFIG.testimonials.map(t => `
+        <div class="testi-card">
+          <p class="testi-text">"${t.content}"</p>
+          <div class="testi-author">
+            <img src="${t.avatar}" alt="${t.name}">
+            <div>
+              <div class="testi-name">${t.name}</div>
+              <div class="testi-role">${t.role}</div>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // Modal Handling
+    function openModal(locId) {
+      const item = KLI_CONFIG.locations.find(l => l.id === locId);
+      if (!item) return;
+
+      document.getElementById("modalImage").src = item.image;
+      document.getElementById("modalName").textContent = item.name;
+      document.getElementById("modalAddress").textContent = item.address;
+      document.getElementById("modalOffer").textContent = item.specialOffer;
+      document.getElementById("modalDesc").textContent = item.description;
+
+      const facilitiesContainer = document.getElementById("modalFacilities");
+      facilitiesContainer.innerHTML = item.facilities.map(f => `<span class="modal-chip">✓ ${f}</span>`).join("");
+
+      document.getElementById("modalCallBtn").href = `tel:${item.phone}`;
+      document.getElementById("modalMapBtn").href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
+
+      const modal = document.getElementById("detailModal");
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("detailModal");
+      modal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function handleBackdropClick(event) {
+      if (event.target.id === "detailModal") {
+        closeModal();
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+
+    // Scroll to Top & Fab
+    function setupScrollEvents() {
+      const fabTop = document.getElementById("fabTop");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) {
+          fabTop.classList.add("show");
+        } else {
+          fabTop.classList.remove("show");
+        }
+      });
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>

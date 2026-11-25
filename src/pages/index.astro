@@ -1,0 +1,789 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Lấy danh sách bài viết đã xuất bản
+const allPosts = await getCollection('posts', ({ data }) => data.status === 'published');
+allPosts.sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime());
+const latestReviews = allPosts.slice(0, 3);
+
+// Lấy danh sách phòng tập từ Content Collection
+const allLocations = await getCollection('locations');
+---
+
+<Layout>
+  <!-- ==================== HERO SECTION ==================== -->
+  <header class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge-alert">
+          <span>🔔</span> Hỗ Trợ Chuyển Đổi Quyền Lợi Hội Viên California Toàn Quốc
+        </div>
+        <h1 class="hero-title">
+          CỘNG ĐỒNG THỂ THAO <span class="highlight">KLI</span>
+        </h1>
+        <p class="hero-subtitle">
+          Nền tảng tra cứu phòng Gym, studio Group X, Yoga, sân Pickleball & Cầu lông uy tín. Giữ vững ngọn lửa thể thao và tìm kiếm không gian tập luyện lý tưởng cùng hàng ngàn đồng đội.
+        </p>
+
+        <!-- Stats Ribbon -->
+        <div class="stats-ribbon">
+          <div class="stat-item">
+            <div class="stat-number">15,000+</div>
+            <div class="stat-label">Hội viên Kli năng động</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">180+</div>
+            <div class="stat-label">Phòng tập & Sân bãi liên kết</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">95+</div>
+            <div class="stat-label">HLV & Chuyên gia đối tác</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Hỗ trợ hội viên Cali chuyển đổi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== INTERACTIVE SEARCH PANEL ==================== -->
+      <section class="search-panel" id="search-section">
+        <div class="search-row">
+          <div class="input-box">
+            <svg viewBox="0 0 256 256" fill="currentColor">
+              <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+            </svg>
+            <input type="text" id="keywordInput" class="search-input" placeholder="Tìm theo tên phòng, đường phố, HLV (ví dụ: Paul Kent, Nova, Cầu Giấy...)">
+          </div>
+
+          <div>
+            <select id="regionSelect" class="search-select">
+              <option value="all">📍 Tất cả Tỉnh / Thành phố</option>
+              <option value="ha-noi">📍 Hà Nội</option>
+              <option value="hcm">📍 Hồ Chí Minh</option>
+              <option value="da-nang">📍 Đà Nẵng</option>
+              <option value="bien-hoa">📍 Đồng Nai (Biên Hòa)</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="areaSelect" class="search-select">
+              <option value="all">🏢 Tất cả Khu vực / Quận</option>
+              <option value="le-van-luong">Lê Văn Lương / Thanh Xuân</option>
+              <option value="cau-giay">Cầu Giấy</option>
+              <option value="dong-da">Đống Đa</option>
+              <option value="tay-ho">Tây Hồ</option>
+              <option value="long-bien">Long Biên</option>
+              <option value="quan-7">Quận 7 (Phú Mỹ Hưng)</option>
+            </select>
+          </div>
+
+          <button class="btn-search-main" onclick="executeSearch()">
+            <span>Tìm Kiếm Ngay</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills" id="categoryPills">
+        <button class="pill-btn active" onclick="setCategoryFilter('all')">🔥 Tất cả</button>
+        <button class="pill-btn" onclick="setCategoryFilter('gym')">🏋️ Gym & Fitness</button>
+        <button class="pill-btn" onclick="setCategoryFilter('group-x')">💃 Group X & Dance</button>
+        <button class="pill-btn" onclick="setCategoryFilter('yoga')">🧘 Yoga & Pilates</button>
+        <button class="pill-btn" onclick="setCategoryFilter('indoor')">🏸 Pickleball & Cầu lông</button>
+        <button class="pill-btn" onclick="setCategoryFilter('swimming')">🏊 Bơi lội</button>
+        <button class="pill-btn" onclick="setCategoryFilter('outdoor')">🎾 Tennis & Ngoài trời</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== KHỐI BÀI VIẾT & REVIEW MỚI NHẤT ==================== -->
+  {latestReviews.length > 0 && (
+    <section class="latest-reviews-section">
+      <div class="container">
+        <div class="section-header-bar">
+          <div>
+            <span class="section-tag">Góc Thẩm Định & Đánh Giá</span>
+            <h2 class="section-title-sm">Bài Viết & Xếp Hạng Phòng Tập Nổi Bật</h2>
+          </div>
+          <a href="/bai-viet" class="btn-view-all-posts">
+            <span>Xem tất cả bài viết ({allPosts.length})</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <div class="latest-reviews-grid">
+          {latestReviews.map(post => {
+            const slug = post.id.replace(/\.(md|mdoc|mdx)$/, '');
+            const review = post.data.venueReview;
+            return (
+              <div class="review-mini-card">
+                <div class="mini-card-thumb">
+                  <img src={post.data.coverImage || "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80"} alt={post.data.title} />
+                  {review && review.isReviewPost && (
+                    <span class="mini-rating-badge">★ {review.overallRating} - {review.rankBadge}</span>
+                  )}
+                </div>
+                <div class="mini-card-body">
+                  <span class="mini-card-date">{new Date(post.data.publishedDate).toLocaleDateString('vi-VN')}</span>
+                  <h3 class="mini-card-title"><a href={`/bai-viet/${slug}`}>{post.data.title}</a></h3>
+                  <p class="mini-card-desc">{post.data.summary}</p>
+                  <a href={`/bai-viet/${slug}`} class="mini-card-link">Xem đánh giá chi tiết →</a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ==================== MAIN DIRECTORY SECTION ==================== -->
+  <main class="results-section">
+    <div class="container">
+      <div class="section-header-bar">
+        <div class="results-count-badge">
+          <span>Danh Sách Phòng Tập & Sân Bãi</span>
+          <div id="resultsCount">Đang hiển thị {allLocations.length} địa điểm</div>
+        </div>
+      </div>
+
+      <!-- Results Grid -->
+      <div class="cards-grid" id="cardsGrid">
+        <!-- Rendered dynamically from script or server -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== BENEFITS SECTION ==================== -->
+  <section class="benefits-section" id="benefits-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-tag">Đặc Quyền Hội Viên</span>
+        <h2 class="section-title">Tại Sao Nên Đồng Hành Cùng Cộng Đồng Kli?</h2>
+        <p class="section-desc">Chúng tôi là tổ chức cộng đồng độc lập, hoạt động vì quyền lợi chính đáng của những người đam mê rèn luyện thể chất.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <h3 class="benefit-title">Chuyển Đổi Quyền Lợi Linh Hoạt</h3>
+          <p class="benefit-desc">Hỗ trợ kết nối chuyển đổi ngang hoặc nhận ưu đãi lên đến 80% từ các phòng tập đối tác cho hội viên gặp khó khăn khi Cali tạm ngưng.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">⭐</div>
+          <h3 class="benefit-title">Thông Tin Thực Tế & Minh Bạch</h3>
+          <p class="benefit-desc">Mọi thông tin về giá cả, cơ sở vật chất và hợp đồng đều được đội ngũ Kli thẩm định trực tiếp trước khi chia sẻ tới cộng đồng.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🤝</div>
+          <h3 class="benefit-title">Gặp Lại HLV Quen Thuộc</h3>
+          <p class="benefit-desc">Cập nhật danh sách studio, lớp học do các HLV Group X, Yoga từng giảng dạy tại Cali đứng lớp để bạn giữ nguyên nhịp độ tập luyện.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🎾</div>
+          <h3 class="benefit-title">Kết Nối Bạn Tập & Giao Lưu</h3>
+          <p class="benefit-desc">Tham gia các nhóm giao lưu Pickleball, chạy bộ, cầu lông theo từng khu vực tại Hà Nội, TP.HCM, Đà Nẵng hàng tuần.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT & STORY SECTION ==================== -->
+  <section class="about-section" id="about-section">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-text">
+          <span class="section-tag">Sứ Mệnh Kli Sports</span>
+          <h2>Duy Trì Thói Quen Tập Luyện Bền Vững</h2>
+          <p>
+            Trước biến động của thị trường thể hình và sự gián đoạn dịch vụ tại một số chuỗi lớn như California Fitness, Cộng đồng Thể thao Kli ra đời với mục tiêu bảo vệ quyền lợi người tập và giữ vững ngọn lửa thể thao.
+          </p>
+          <ul class="check-list">
+            <li><span class="check-icon">✓</span> <span>Tổng hợp thông tin địa điểm phòng tập, studio, sân thể thao được xác minh thực tế.</span></li>
+            <li><span class="check-icon">✓</span> <span>Cầu nối độc quyền giữa các đối tác thể hình uy tín và hội viên cần chuyển đổi.</span></li>
+            <li><span class="check-icon">✓</span> <span>Không gian sinh hoạt trực tuyến và offline lành mạnh, minh bạch và gắn kết.</span></li>
+            <li><span class="check-icon">✓</span> <span>Tư vấn pháp lý và giải pháp bảo vệ quyền lợi hội viên hoàn toàn miễn phí.</span></li>
+          </ul>
+          <a href="https://zalo.me/g/klisports" target="_blank" class="btn-nav-cta">
+            <span>Tham Gia Cộng Đồng Zalo Ngay</span>
+          </a>
+        </div>
+
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="Cộng đồng thể thao Kli">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA BANNER SECTION ==================== -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Đừng Để Nhịp Tập Của Bạn Bị Gián Đoạn!</h2>
+        <p>Tham gia ngay các nhóm thảo luận Zalo & Facebook của Cộng Đồng Thể Thao Kli để cập nhật danh sách phòng tập đối tác và nhận vé tập ưu đãi độc quyền.</p>
+        <div class="cta-btns">
+          <a href="https://zalo.me/g/klisports" target="_blank" class="btn-zalo-big">
+            <span>💬 Tham Gia Nhóm Zalo Kli</span>
+          </a>
+          <a href="https://facebook.com/groups/congdongthethaokli" target="_blank" class="btn-fb-big">
+            <span>👥 Tham Gia Group Facebook</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOAD SCRIPT TƯƠNG TÁC TÌM KIẾM -->
+  <script is:inline src="/data.js"></script>
+  <script is:inline>
+    // Xử lý tìm kiếm client-side
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof KLI_CONFIG !== 'undefined' && KLI_CONFIG.locations) {
+        renderLocationsGrid(KLI_CONFIG.locations);
+      }
+    });
+
+    function renderLocationsGrid(list) {
+      const grid = document.getElementById("cardsGrid");
+      if (!grid) return;
+
+      grid.innerHTML = list.map(item => `
+        <div class="place-card">
+          <div class="card-thumb">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="card-badge ${item.badge.includes('Cali') ? 'badge-cali' : 'badge-verified'}">${item.badge}</div>
+            <div class="card-sport-tag">${item.sportName || item.sport}</div>
+            <div class="card-rating">★ ${item.rating}</div>
+          </div>
+          <div class="card-body">
+            <div class="card-location-meta">📍 ${item.areaName} • ${item.regionName}</div>
+            <h3 class="card-title">${item.name}</h3>
+            <div class="card-offer-box"><strong>Ưu đãi Kli:</strong> ${item.specialOffer}</div>
+            <div class="card-address">${item.address}</div>
+            <div class="card-footer">
+              <div class="card-price"><span>Mức giá</span><strong>${item.priceRange}</strong></div>
+              <a href="tel:${item.phone}" class="btn-card-call"><span>Gọi</span></a>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+  </script>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero-section {
+    position: relative;
+    padding: 60px 0 40px;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 42, 84, 0.18) 0%, rgba(16, 185, 129, 0.08) 45%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto 40px;
+  }
+  .badge-alert {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(255, 42, 84, 0.12);
+    border: 1px solid rgba(255, 42, 84, 0.3);
+    border-radius: var(--radius-full);
+    color: #ff6b8b;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .hero-title .highlight {
+    background: linear-gradient(135deg, #ff2a54, #ff7b92);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-subtitle {
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Stats Ribbon */
+  .stats-ribbon {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    margin-bottom: 40px;
+  }
+  .stat-item {
+    text-align: center;
+    border-right: 1px solid var(--border-color);
+  }
+  .stat-item:last-child {
+    border-right: none;
+  }
+  .stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* Search */
+  .search-panel {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+  .search-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr auto;
+    gap: 14px;
+    align-items: center;
+  }
+  .input-box {
+    position: relative;
+  }
+  .input-box svg {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--text-dim);
+  }
+  .search-input {
+    width: 100%;
+    height: 54px;
+    padding: 0 16px 0 46px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: #fff;
+    outline: none;
+  }
+  .search-select {
+    width: 100%;
+    height: 54px;
+    padding: 0 16px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: #fff;
+    outline: none;
+  }
+  .btn-search-main {
+    height: 54px;
+    padding: 0 28px;
+    background: linear-gradient(135deg, var(--primary), #e11d48);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* Pills */
+  .category-pills {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin-bottom: 24px;
+  }
+  .pill-btn {
+    padding: 10px 18px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .pill-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+  }
+
+  /* Latest Reviews Section */
+  .latest-reviews-section {
+    padding: 50px 0 30px;
+    border-top: 1px solid var(--border-color);
+  }
+  .section-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .section-tag {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .section-title-sm {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .btn-view-all-posts {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 14.5px;
+  }
+  .latest-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .review-mini-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+  }
+  .review-mini-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+  }
+  .mini-card-thumb {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mini-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .mini-rating-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(255, 42, 84, 0.95);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11.5px;
+    font-weight: 700;
+  }
+  .mini-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .mini-card-date {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .mini-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .mini-card-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .mini-card-link {
+    margin-top: auto;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* Cards Grid */
+  .results-section {
+    padding: 30px 0 60px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+  }
+  :global(.place-card) {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  :global(.card-thumb) {
+    position: relative;
+    height: 200px;
+  }
+  :global(.card-thumb img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  :global(.card-badge) {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  :global(.badge-cali) { background: #ff2a54; color: #fff; }
+  :global(.badge-verified) { background: #10b981; color: #fff; }
+  :global(.card-sport-tag) {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 11px;
+    border-radius: 4px;
+  }
+  :global(.card-rating) {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.7);
+    color: #fbbf24;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: var(--radius-full);
+  }
+  :global(.card-body) {
+    padding: 20px;
+  }
+  :global(.card-location-meta) {
+    font-size: 13px;
+    color: var(--secondary);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  :global(.card-title) {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  :global(.card-offer-box) {
+    background: rgba(255, 42, 84, 0.08);
+    border-left: 3px solid var(--primary);
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #fda4af;
+    margin-bottom: 12px;
+  }
+  :global(.card-address) {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  :global(.card-footer) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 14px;
+  }
+  :global(.btn-card-call) {
+    background: var(--primary);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  /* Benefits */
+  .benefits-section {
+    padding: 70px 0;
+    background: #0f121b;
+  }
+  .section-title-wrap {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 40px;
+  }
+  .section-title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .section-desc {
+    color: var(--text-muted);
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .benefit-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+  .benefit-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+  .benefit-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .benefit-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* About */
+  .about-section {
+    padding: 70px 0;
+  }
+  .about-wrap {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .about-text h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  .about-text p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .check-list {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .check-list li {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14.5px;
+    color: #e2e8f0;
+  }
+  .check-icon {
+    color: var(--secondary);
+    font-weight: bold;
+  }
+  .about-image img {
+    width: 100%;
+    border-radius: var(--radius-xl);
+  }
+
+  /* CTA */
+  .cta-banner-section {
+    padding: 50px 0 80px;
+  }
+  .cta-banner {
+    background: linear-gradient(135deg, #1c2338 0%, #151a28 100%);
+    border: 1px solid rgba(255, 42, 84, 0.3);
+    border-radius: var(--radius-xl);
+    padding: 44px 30px;
+    text-align: center;
+  }
+  .cta-banner h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .cta-banner p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 28px;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-zalo-big {
+    padding: 12px 26px;
+    background: #0068ff;
+    color: #fff;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+  }
+  .btn-fb-big {
+    padding: 12px 26px;
+    background: #1877f2;
+    color: #fff;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+  }
+
+  @media (max-width: 900px) {
+    .search-row { grid-template-columns: 1fr; }
+    .about-wrap { grid-template-columns: 1fr; }
+    .stats-ribbon { grid-template-columns: 1fr 1fr; }
+  }
+</style>

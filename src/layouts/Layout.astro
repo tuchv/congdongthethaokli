@@ -1,0 +1,331 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Cộng Đồng Thể Thao KLI | Tìm Sân Bãi & Phòng Tập Uy Tín Toàn Quốc", 
+  description = "Nền tảng tra cứu phòng tập Gym, Studio Group X, Yoga, Sân Pickleball & Cầu lông uy tín. Hỗ trợ quyền lợi và chuyển đổi linh hoạt cho hội viên."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style is:global>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --bg-main: #0b0d13;
+      --bg-surface: #121622;
+      --bg-surface-elevated: #1a1f30;
+      --bg-glass: rgba(18, 22, 34, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.18);
+      
+      --primary: #ff2a54;
+      --primary-hover: #e01e44;
+      --primary-glow: rgba(255, 42, 84, 0.35);
+      --secondary: #10b981;
+      --secondary-glow: rgba(16, 185, 129, 0.3);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4);
+
+      --transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font-family: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: var(--bg-glass);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #ff2a54, #ff6b8b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px var(--primary-glow);
+      font-size: 20px;
+    }
+
+    .brand-text span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-main);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--primary), #e11d48);
+      color: #fff;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 16px var(--primary-glow);
+      transition: var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 42, 84, 0.5);
+    }
+
+    .btn-nav-cms {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-nav-cms:hover {
+      color: #fff;
+      border-color: var(--border-hover);
+    }
+
+    /* Footer */
+    footer {
+      background: #07080c;
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      max-width: 400px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .footer-links h5 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">KLI <span>SPORTS</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link">Trang Chủ</a></li>
+        <li><a href="/#search-section" class="nav-link">Tìm Phòng Tập</a></li>
+        <li><a href="/bai-viet" class="nav-link">Đánh Giá & Bài Viết</a></li>
+        <li><a href="/#benefits-section" class="nav-link">Đặc Quyền Kli</a></li>
+        <li><a href="/#about-section" class="nav-link">Về Cộng Đồng</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/keystatic" class="btn-nav-cms" title="Trang quản trị nội dung CMS">
+          <span>⚙️ Quản Trị</span>
+        </a>
+        <a href="https://zalo.me/g/klisports" target="_blank" class="btn-nav-cta">
+          <span>Nhóm Zalo KLI</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT SLOT -->
+  <slot />
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>⚡ CỘNG ĐỒNG THỂ THAO KLI</h4>
+          <p>Nền tảng kết nối thể thao, hỗ trợ chuyển đổi quyền lợi hội viên và thẩm định địa điểm tập luyện uy tín tại Việt Nam.</p>
+          <p style="color: var(--primary); font-weight: 600;">Hotline Hỗ Trợ: 0988.123.456</p>
+        </div>
+
+        <div class="footer-links">
+          <h5>Góc Chuyên Mục</h5>
+          <ul>
+            <li><a href="/bai-viet">Tất Cả Bài Viết & Đánh Giá</a></li>
+            <li><a href="/#search-section">Tra Cứu Phòng Tập</a></li>
+            <li><a href="/keystatic">Đăng Nhập Quản Trị CMS</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h5>Cộng Đồng</h5>
+          <ul>
+            <li><a href="https://zalo.me/g/klisports" target="_blank">Nhóm Zalo Hỗ Trợ Cali</a></li>
+            <li><a href="https://facebook.com/groups/congdongthethaokli" target="_blank">Facebook Group Kli</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Cộng Đồng Thể Thao Kli (KLI Sports Community). All rights reserved. Vận hành bởi Astro & Keystatic CMS.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
