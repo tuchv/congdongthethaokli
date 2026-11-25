@@ -7,18 +7,17 @@ import { config, collection, singleton, fields, component } from '@keystatic/cor
 // ==========================================================================
 
 export default config({
-  // Chế độ lưu trữ: Local khi phát triển, Tự động commit vào GitHub khi deploy lên Vercel
+  // Chế độ lưu trữ: Keystatic Cloud trên Vercel, Local khi chạy máy cá nhân
   storage: process.env.NODE_ENV === 'production'
     ? {
-        kind: 'github',
-        repo: {
-          owner: process.env.PUBLIC_VERCEL_GIT_REPO_OWNER || 'your-github-username',
-          name: process.env.PUBLIC_VERCEL_GIT_REPO_SLUG || 'congdongthethaokli',
-        },
+        kind: 'cloud',
       }
     : {
         kind: 'local',
       },
+  cloud: {
+    project: 'tuchv/congdongthethaokli',
+  },
 
   ui: {
     brand: {
